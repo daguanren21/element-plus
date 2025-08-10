@@ -76,6 +76,8 @@ export * from './anchor'
 export * from './segmented'
 export * from './mention'
 export * from './splitter'
+export * from './headless-form'
+export * from './headless-form-item'
 
 // plugins
 export * from './infinite-scroll'

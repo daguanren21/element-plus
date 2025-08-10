@@ -108,6 +108,7 @@ declare module 'vue' {
     ElMention: typeof import('element-plus')['ElMention']
     ElSplitter: typeof import('element-plus')['ElSplitter']
     ElSplitterPanel: typeof import('element-plus')['ElSplitterPanel']
+    ElHeadlessFormItem: typeof import('element-plus')['ElHeadlessFormItem']
   }
 
   interface ComponentCustomProperties {
