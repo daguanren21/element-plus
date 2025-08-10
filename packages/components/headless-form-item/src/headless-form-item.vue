@@ -1,11 +1,14 @@
-<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <template>
   <div>
-    <slot />
+    <Field :name="props.prop" :type="props.prop">
+      <slot />
+    </Field>
+    <ErrorMessage :name="props.prop" />
   </div>
 </template>
 
 <script lang="ts" setup>
+import { ErrorMessage, Field } from 'vee-validate'
 import {
   headlessFormItemEmits,
   headlessFormItemProps,
@@ -16,6 +19,7 @@ defineOptions({
 })
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps(headlessFormItemProps)
+console.log(props)
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const emit = defineEmits(headlessFormItemEmits)

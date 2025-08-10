@@ -78,6 +78,7 @@ export * from './mention'
 export * from './splitter'
 export * from './headless-form'
 export * from './headless-form-item'
+export * from './headless-field-input'
 
 // plugins
 export * from './infinite-scroll'

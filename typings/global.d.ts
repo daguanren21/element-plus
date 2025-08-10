@@ -109,6 +109,9 @@ declare module 'vue' {
     ElSplitter: typeof import('element-plus')['ElSplitter']
     ElSplitterPanel: typeof import('element-plus')['ElSplitterPanel']
     ElHeadlessFormItem: typeof import('element-plus')['ElHeadlessFormItem']
+    ElGigaFieldInput: typeof import('element-plus')['ElGigaFieldInput']
+    ElHeadlesFieldInput: typeof import('element-plus')['ElHeadlesFieldInput']
+    ElHeadlessFieldInput: typeof import('element-plus')['ElHeadlessFieldInput']
   }
 
   interface ComponentCustomProperties {
