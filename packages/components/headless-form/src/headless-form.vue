@@ -20,7 +20,6 @@ defineOptions({
 })
 
 const props = defineProps(headlessFormProps)
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const emits = defineEmits(headlessFormEmits)
 const formRules = ref<Record<string, ZodType>>({})
 const validationSchema = computed(() =>
