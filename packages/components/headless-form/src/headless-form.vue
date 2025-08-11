@@ -28,7 +28,8 @@ const emits = defineEmits(headlessFormEmits)
 // @ts-expect-error
 const formRules = ref<Record<string, ZodType>>(props.rules)
 const validationSchema = ref(toTypedSchema(zod.object(formRules.value)))
-// 注册form-item rule
+
+// 注册form-item rule  todo 这里存在问题动态注册的不能及时触发，validationSchema只能初始化给，目前没找到解决方法
 function registerRule(name: string, rule: ZodType) {
   if (rule) {
     validationSchema.value = toTypedSchema(
@@ -37,7 +38,7 @@ function registerRule(name: string, rule: ZodType) {
   }
 }
 
-const { handleSubmit } = useForm({
+const { handleSubmit, handleReset } = useForm({
   validationSchema: validationSchema.value,
 })
 provide(FormContextKey, {
@@ -68,8 +69,13 @@ async function validateFileds() {
     errors: formErrors.value,
   })
 }
+function resetFields() {
+  handleReset()
+}
+
 defineExpose({
   validateFileds,
+  resetFields,
 })
 // init here
 </script>
