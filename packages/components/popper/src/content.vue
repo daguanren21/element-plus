@@ -5,8 +5,8 @@
     :style="contentStyle"
     :class="contentClass"
     tabindex="-1"
-    @mouseenter="(e) => $emit('mouseenter', e)"
-    @mouseleave="(e) => $emit('mouseleave', e)"
+    @mouseenter="(e:any) => $emit('mouseenter', e)"
+    @mouseleave="(e:any) => $emit('mouseleave', e)"
   >
     <el-focus-trap
       :trapped="trapped"

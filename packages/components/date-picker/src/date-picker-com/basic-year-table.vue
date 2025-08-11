@@ -11,7 +11,7 @@
         <td
           v-for="(cell, cellKey) in row"
           :key="`${rowKey}_${cellKey}`"
-          :ref="(el) => isSelectedCell(cell) && (currentCellRef = el as HTMLElement)"
+          :ref="(el:HTMLElement) => isSelectedCell(cell) && (currentCellRef = el as HTMLElement)"
           class="available"
           :class="getCellKls(cell)"
           :aria-selected="isSelectedCell(cell)"

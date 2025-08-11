@@ -11,12 +11,12 @@
     :class="[ns.be('menu', 'item'), ns.is('disabled', disabled)]"
     :tabindex="tabIndex"
     :role="role"
-    @click="(e) => $emit('clickimpl', e)"
+    @click="(e:any) => $emit('clickimpl', e)"
     @focus="handleFocus"
     @keydown.self="handleKeydown"
     @mousedown="handleMousedown"
-    @pointermove="(e) => $emit('pointermove', e)"
-    @pointerleave="(e) => $emit('pointerleave', e)"
+    @pointermove="(e:any) => $emit('pointermove', e)"
+    @pointerleave="(e:any) => $emit('pointerleave', e)"
   >
     <el-icon v-if="icon">
       <component :is="icon" />

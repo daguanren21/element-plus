@@ -14,9 +14,10 @@ import {
   ElInput,
   headlessFormItemProps,
 } from '@element-plus/components'
+import { useVModel } from '@vueuse/core'
 
 const props = defineProps(headlessFormItemProps)
 
-const vm = defineModel()
-// const emits = defineEmits(headlessFormItemEmits)
+const emit = defineEmits(['update:modelValue'])
+const vm = useVModel(props, 'modelValue', emit)
 </script>

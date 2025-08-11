@@ -86,7 +86,7 @@
             <template v-for="(url, i) in urlList" :key="i">
               <img
                 v-if="i === activeIndex"
-                :ref="(el) => (imgRefs[i] = el as HTMLImageElement)"
+                :ref="(el:HTMLImageElement) => (imgRefs[i] = el as HTMLImageElement)"
                 :src="url"
                 :style="imgStyle"
                 :class="ns.e('img')"

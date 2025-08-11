@@ -10,16 +10,13 @@
       :validate-on-mount="false"
       :validate-on-change="true"
     >
-      <div class="field">
+      <div :class="ns.b()">
         <div class="label" :class="{ required: required }">
           {{ props.label }}
         </div>
         <div style="position: relative">
           <slot v-bind="scoped" />
-          <ErrorMessage
-            style="position: absolute; left: 0; bottom: -25px; color: #f56c6c"
-            :name="props.prop"
-          />
+          <ErrorMessage class="error-message" :name="props.prop" />
         </div>
       </div>
     </Field>
@@ -33,10 +30,13 @@ import { headlessFormItemProps } from './headless-form-item'
 import { FormContextKey } from '@element-plus/components'
 import { isString } from '@element-plus/utils'
 import { toTypedSchema } from '@vee-validate/zod'
+import { useNamespace } from '@element-plus/hooks'
 
 defineOptions({
   name: 'ElHeadlessFormItem',
 })
+
+const ns = useNamespace('headless-form-item')
 const props = defineProps(headlessFormItemProps)
 
 // 注册formItem rule 字段到全局
@@ -57,19 +57,3 @@ const required = computed(() => {
 
 // init here
 </script>
-
-<style lang="scss" scoped>
-.field {
-  display: flex;
-  align-items: center;
-  .label {
-    white-space: nowrap;
-    margin-right: 10px;
-  }
-  .required::before {
-    content: '*';
-    color: #f56c6c;
-    margin-right: 5px;
-  }
-}
-</style>

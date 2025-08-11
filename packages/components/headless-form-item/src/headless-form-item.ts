@@ -8,6 +8,9 @@ export const headlessFormItemProps = buildProps({
   /**
    * @description The name of the form field, which should correspond to a key in the form's initial values.
    */
+  modelValue: {
+    type: String,
+  },
   prop: {
     type: String,
     required: true,

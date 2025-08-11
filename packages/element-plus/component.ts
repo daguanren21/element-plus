@@ -109,10 +109,16 @@ import { ElAnchor, ElAnchorLink } from '@element-plus/components/anchor'
 import { ElSegmented } from '@element-plus/components/segmented'
 import { ElMention } from '@element-plus/components/mention'
 import { ElSplitter, ElSplitterPanel } from '@element-plus/components/splitter'
+import { ElHeadlessFormItem } from '@element-plus/components/headless-form-item'
+import { ElHeadlessFieldInput } from '@element-plus/components/headless-field-input'
+import { ElHeadlessForm } from '@element-plus/components/headless-form'
 
 import type { Plugin } from 'vue'
 
 export default [
+  ElHeadlessFormItem,
+  ElHeadlessFieldInput,
+  ElHeadlessForm,
   ElAffix,
   ElAlert,
   ElAutocomplete,
