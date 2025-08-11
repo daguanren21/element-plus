@@ -5,20 +5,14 @@
     :rules="schema"
     @submit="handleSubmit"
   >
+    <ElHeadlessFieldInput v-model="formData.name" prop="name" label="姓名" />
     <ElHeadlessFieldInput
-      prop="name"
-      label="姓名"
-      :rule="schema.name"
-      v-model="formData.name"
-    />
-    <ElHeadlessFieldInput
+      v-model="formData.address"
       style="margin-top: 30px"
       prop="address"
       label="地址"
-      :rule="schema.address"
-      v-model="formData.address"
     />
-    <el-button style="margin-top: 30px" @click="saveForm" type="primary"
+    <el-button style="margin-top: 30px" type="primary" @click="saveForm"
       >保存</el-button
     >
   </ElHeadlessForm>
@@ -31,7 +25,7 @@ import zod from 'zod'
 
 const schema = {
   name: zod.string().max(2, { message: '姓名不能超过2个字符' }),
-  address: zod.string().max(10, { message: '地址不能超过10个字符' }),
+  address: zod.string().max(5, { message: '地址不能超过5个字符' }),
 }
 const formData = reactive({
   name: '',
@@ -40,7 +34,7 @@ const formData = reactive({
 const formRef = useTemplateRef('form')
 
 async function saveForm() {
-  let res = await formRef.value?.validateFileds()
+  const res = await formRef.value?.validateFileds()
   console.log(res)
 }
 

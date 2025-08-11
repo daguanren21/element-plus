@@ -1,6 +1,15 @@
 <template>
   <div style="padding: 0px 30px">
-    <Field v-slot="scoped" :name="props.prop" v-model="vm">
+    <Field
+      v-slot="scoped"
+      v-model="modelValue"
+      :name="props.prop"
+      :validate-on-model-update="true"
+      :validate-on-input="false"
+      :validate-on-blur="true"
+      :validate-on-mount="false"
+      :validate-on-change="true"
+    >
       <div class="field">
         <div class="label" :class="{ required: required }">
           {{ props.label }}
@@ -18,11 +27,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ErrorMessage, Field } from 'vee-validate'
-import { headlessFormItemProps } from './headless-form-item'
 import { computed, inject } from 'vue'
-import { FormContextKey } from 'element-plus'
-import { isString } from 'lodash-es'
+import { ErrorMessage, Field, useField } from 'vee-validate'
+import { headlessFormItemProps } from './headless-form-item'
+import { FormContextKey } from '@element-plus/components'
+import { isString } from '@element-plus/utils'
+import { toTypedSchema } from '@vee-validate/zod'
 
 defineOptions({
   name: 'ElHeadlessFormItem',
@@ -30,17 +40,17 @@ defineOptions({
 const props = defineProps(headlessFormItemProps)
 
 // 注册formItem rule 字段到全局
-const { registerRule } = inject(FormContextKey) as any
-
+const { registerRule, rules } = inject(FormContextKey) as any
 registerRule(props.prop, props.rule)
 
-const vm = defineModel()
+const fieldRule = props.rule || rules[props.prop]
+const fieldSchema = computed(() => (fieldRule ? toTypedSchema(fieldRule) : ''))
+const { value: modelValue } = useField(props.prop, fieldSchema.value)
 
 // 判断是否必填
 const required = computed(() => {
-  const rule = props.rule
-  if (rule && !isString(rule)) {
-    return !['nullable', 'optional'].includes(rule.def.type)
+  if (fieldRule && !isString(fieldRule)) {
+    return !['nullable', 'optional'].includes(fieldRule.def.type)
   }
   return false
 })
