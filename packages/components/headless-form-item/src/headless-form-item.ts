@@ -1,5 +1,5 @@
 import { headlessFieldInputProps } from './../../headless-field-input/src/headless-field-input'
-import { buildProps } from '@element-plus/utils'
+import { buildProps, isString } from '@element-plus/utils'
 
 import type { ExtractPropTypes, __ExtractPublicPropTypes } from 'vue'
 import { ZodType } from 'zod'
@@ -29,5 +29,8 @@ export type HeadlessFormItemPropsPublic = __ExtractPublicPropTypes<
   typeof headlessFormItemProps
 >
 
-export const headlessFormItemEmits = {}
+export const headlessFormItemEmits = {
+  change: (value: string) => isString(value),
+  input: (value: string) => isString(value)
+}
 export type HeadlessFormItemEmits = typeof headlessFormItemEmits

@@ -2,7 +2,6 @@
   <div>
     <el-headless-form-item v-bind="props" v-model="modelValue">
       <template #default="{ field }">
-        {{ (modelValue, field) }}
         <el-input
           v-model="(modelValue as any)"
           @change="handleChange"
@@ -22,7 +21,7 @@ import { useField } from 'vee-validate'
 import {
   ElHeadlessFormItem,
   ElInput,
-  headlessFieldInputEmits,
+  headlessFormItemEmits,
   headlessFormItemProps,
 } from '@element-plus/components'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -33,7 +32,7 @@ const fieldSchema = computed(() =>
 )
 const { value: modelValue, validate } = useField(props.prop, fieldSchema.value)
 
-const emits = defineEmits(headlessFieldInputEmits)
+const emits = defineEmits(headlessFormItemEmits)
 
 async function handleChange(value: string) {
   try {
