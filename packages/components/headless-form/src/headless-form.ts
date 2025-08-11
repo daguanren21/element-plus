@@ -14,7 +14,7 @@ export const headlessFormProps = buildProps({
   /**
    * @description Initial values of the form.
    */
-  form: {
+  model: {
     type: Object as unknown as () => GenericObject,
     default: () => ({}),
   },
@@ -31,5 +31,9 @@ export type HeadlessFormPropsPublic = __ExtractPublicPropTypes<
   typeof headlessFormProps
 >
 
-export const headlessFormEmits = {}
+export const headlessFormEmits = {
+  submit: (values: GenericObject) => true
+}
 export type HeadlessFormEmits = typeof headlessFormEmits
+
+export const FormContextKey = Symbol('form-context-key')

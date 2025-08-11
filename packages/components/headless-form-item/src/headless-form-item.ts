@@ -2,6 +2,7 @@ import { headlessFieldInputProps } from './../../headless-field-input/src/headle
 import { buildProps } from '@element-plus/utils'
 
 import type { ExtractPropTypes, __ExtractPublicPropTypes } from 'vue'
+import { ZodType } from 'zod'
 
 export const headlessFormItemProps = buildProps({
   /**
@@ -15,13 +16,8 @@ export const headlessFormItemProps = buildProps({
     type: String,
     default: '',
   },
-  required: {
-    type: Boolean,
-    default: false,
-  },
-  rules: {
-    type: Object,
-    default: () => ({}),
+  rule: {
+    type: ZodType
   },
 } as const)
 

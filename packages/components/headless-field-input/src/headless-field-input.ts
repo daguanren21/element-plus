@@ -1,4 +1,4 @@
-import { buildProps } from '@element-plus/utils'
+import { buildProps, isString } from '@element-plus/utils'
 
 import type { ExtractPropTypes, __ExtractPublicPropTypes } from 'vue'
 
@@ -17,5 +17,8 @@ export type HeadlessFieldInputPropsPublic = __ExtractPublicPropTypes<
   typeof headlessFieldInputProps
 >
 
-export const headlessFieldInputEmits = {}
+export const headlessFieldInputEmits = {
+  change: (value: string) => isString(value),
+  input: (value: string) => isString(value)
+}
 export type HeadlessFieldInputEmits = typeof headlessFieldInputEmits
