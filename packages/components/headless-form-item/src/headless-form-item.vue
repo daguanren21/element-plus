@@ -11,12 +11,17 @@
       :validate-on-change="true"
     >
       <div :class="ns.b()">
-        <div class="label" :class="{ required: required }">
-          {{ props.label }}
+        <div :class="[ns.e('label'), ns.m(required ? 'is-required' : '')]">
+          <slot name="label">
+            {{ props.label }}
+          </slot>
         </div>
+
         <div style="position: relative">
           <slot v-bind="scoped" />
-          <ErrorMessage class="error-message" :name="props.prop" />
+          <slot name="error">
+            <ErrorMessage :class="ns.m('is-error')" :name="props.prop" />
+          </slot>
         </div>
       </div>
     </Field>

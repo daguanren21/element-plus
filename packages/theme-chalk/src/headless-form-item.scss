@@ -5,21 +5,23 @@
   display: flex;
   align-items: center;
 
-  .label {
+  @include e(label) {
     white-space: nowrap;
     margin-right: 10px;
   }
 
-  .error-message {
+  @include m(is-error) {
     position: absolute;
     left: 0;
     bottom: -25px;
     color: #f56c6c;
   }
 
-  .required::before {
-    content: '*';
-    color: #f56c6c;
-    margin-right: 5px;
+  @include m(is-required) {
+    &::before {
+      content: '*';
+      margin-right: 5px;
+      color: #f56c6c;
+    }
   }
 }

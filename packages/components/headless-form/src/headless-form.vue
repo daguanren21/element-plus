@@ -1,8 +1,7 @@
 <template>
-  <form>
+  <Form>
     <slot />
-    <button ref="buttonRef" hidden @click="onSubmit">Submit</button>
-  </form>
+  </Form>
 </template>
 
 <script lang="ts" setup>
@@ -13,7 +12,7 @@ import {
   headlessFormEmits,
   headlessFormProps,
 } from './headless-form'
-import { useForm } from 'vee-validate'
+import { Form, useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 
 import type { GenericObject } from 'vee-validate'
@@ -48,7 +47,6 @@ provide(FormContextKey, {
 const formData = ref(props.model)
 
 const formErrors = ref<Partial<Record<string, string>> | null>(null)
-const buttonRef = ref<HTMLElement | null>(null)
 
 const onSubmit = handleSubmit(
   (values: GenericObject) => {
@@ -62,12 +60,11 @@ const onSubmit = handleSubmit(
   }
 )
 async function validateFileds() {
-  buttonRef.value?.click()
   await onSubmit()
-  return Promise.resolve({
+  return {
     values: formData.value,
     errors: formErrors.value,
-  })
+  }
 }
 function resetFields() {
   handleReset()
